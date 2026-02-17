@@ -1,0 +1,45 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card border-0 shadow-lg overflow-hidden">
+        <div class="card-header border-0 py-4 text-center bg-dark-purple">
+          <h2 class="text-white fw-light mb-0">Agendar <span class="fw-bold">Turno</span></h2>
+        </div>
+        
+        <div class="card-body p-4 p-md-5 bg-white">
+          <form (ngSubmit)="onSubmit()" #shiftForm="ngForm">
+            <div class="mb-4">
+              <label class="form-label text-muted small text-uppercase fw-bold">Número de Cédula</label>
+              <div class="input-group">
+                <span class="input-group-text bg-light border-end-0"><i class="bi bi-person"></i></span>
+                <input type="text" class="form-control bg-light border-start-0 custom-input" 
+                       name="idNumber" [(ngModel)]="newShift.identificationNumber" required
+                       placeholder="Ej: 12345678">
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label text-muted small text-uppercase fw-bold">Sucursal de Atención</label>
+              <select class="form-select bg-light custom-input" name="branchId" 
+                      [(ngModel)]="newShift.branchId" required>
+                <option value="0" disabled>Seleccione una oficina...</option>
+                <option *ngFor="let branch of branches" [value]="branch.id">{{ branch.name }}</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-purple w-100 py-3 fw-bold text-uppercase shadow-sm" 
+                    [disabled]="!shiftForm.form.valid">
+              Confirmar Cita
+            </button>
+          </form>
+
+          <div *ngIf="message" class="alert mt-4 border-0 animate__animated animate__fadeIn" 
+               [ngClass]="isError ? 'alert-custom-error' : 'alert-custom-success'">
+            <i class="bi" [ngClass]="isError ? 'bi-exclamation-triangle-fill' : 'bi-check-circle-fill'"></i>
+            {{ message }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

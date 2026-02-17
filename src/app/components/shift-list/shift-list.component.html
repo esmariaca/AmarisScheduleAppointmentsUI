@@ -1,0 +1,50 @@
+<div class="container py-5">
+  <div class="card border-0 shadow-lg">
+    <div class="card-header border-0 py-4 bg-dark-purple d-flex justify-content-between align-items-center">
+      <h3 class="text-white fw-light mb-0">Historial de <span class="fw-bold">Turnos</span></h3>
+      <button class="btn btn-outline-light btn-sm px-3 rounded-pill" (click)="loadShifts()">
+        <i class="bi bi-arrow-clockwise"></i> Actualizar
+      </button>
+    </div>
+
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead class="bg-light">
+            <tr>
+              <th class="ps-4 py-3 text-muted small text-uppercase">ID</th>
+              <th class="py-3 text-muted small text-uppercase">Cédula</th>
+              <th class="py-3 text-muted small text-uppercase">Sucursal</th>
+              <th class="py-3 text-muted small text-uppercase">Creado</th>
+              <th class="py-3 text-muted small text-uppercase">Límite</th>
+              <th class="pe-4 py-3 text-muted small text-uppercase">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let s of shifts" class="align-middle">
+              <td class="ps-4 fw-bold text-secondary">#{{ s.id }}</td>
+              <td>{{ s.identificationNumber }}</td>
+              <td>
+                <span class="badge bg-light text-dark border">{{ s.branch?.name }}</span>
+              </td>
+              <td class="text-muted">{{ s.createdAt | date:'shortTime' }}</td>
+              <td class="text-muted">{{ s.limitTime | date:'shortTime' }}</td>
+              <td class="pe-4">
+                <span class="badge px-3 py-2 rounded-pill" 
+                      [ngClass]="s.status === 'Pending' ? 'badge-pending' : 'badge-expired'">
+                  {{ s.status === 'Pending' ? 'Pendiente' : 'Expirado' }}
+                </span>
+              </td>
+            </tr>
+            <tr *ngIf="shifts.length === 0">
+              <td colspan="6" class="text-center py-5 text-muted">
+                <i class="bi bi-inbox fs-2 d-block mb-2"></i>
+                No hay turnos registrados en el sistema.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

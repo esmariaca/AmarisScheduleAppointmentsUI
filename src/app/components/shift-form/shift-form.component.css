@@ -1,0 +1,40 @@
+.bg-dark-purple {
+    background-color: #2D1B4E;
+}
+
+.btn-purple {
+    background-color: #4B2C82;
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-purple:hover:not(:disabled) {
+    background-color: #382061;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(75, 44, 130, 0.3);
+}
+
+.btn-purple:disabled {
+    background-color: #ccc;
+}
+
+.custom-input {
+    border: 1px solid #eee;
+    padding: 12px;
+}
+
+.custom-input:focus {
+    border-color: #4B2C82;
+    box-shadow: 0 0 0 0.25rem rgba(75, 44, 130, 0.1);
+}
+
+.alert-custom-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.alert-custom-error {
+    background-color: #ffebee;
+    color: #c62828;
+}
